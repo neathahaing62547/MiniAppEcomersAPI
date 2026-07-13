@@ -45,7 +45,7 @@ class ReportController extends Controller
              
         $start = $request->query('startdate');
         $end = $request->query('enddate');
-           
+     
              $fillter = order::whereBetween('created_at' , [$start , $end])
                          ->with('payment')
                          ->get();

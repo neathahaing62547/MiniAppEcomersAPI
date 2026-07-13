@@ -10,6 +10,7 @@ use App\Http\Controllers\AuthControlller;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\wishlistsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
@@ -53,7 +54,6 @@ Route::middleware(['auth:sanctum', 'role:admin,staff'])->group(function () {
 
     Route::get('/admin/user/search/', [UserController::class, 'SearchUser'])->name('SearchUser');
 
-
     Route::get('/admin/category', [AdminCategoryController::class, 'index'])->name('index');
 
     Route::get('/admin/product', [AdminProductController::class, 'index'])->name('index');
@@ -92,4 +92,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout');
 
     Route::get('/paymentdetail', [PaymentController::class, 'getdetailpayment'])->name('payment');
-});
+
+    Route::post('/addtofavorith/{id}' , [wishlistsController::class, 'store'])->name('addtofavorith');
+     
+    Route::get('/favorith' , [wishlistsController::class, 'index'])->name('Favorith');
+
+    Route::delete('removefromfavorith/{id}' , [wishlistsController::class, 'removefromfavorith'])->name('removefromfavorith');
+    
+}); 
