@@ -30,6 +30,10 @@ class auth_user extends Authenticateble
    }
    public function wishlists()
    {
-      return $this->hasMany(Wishlist::class ,   );
+      return $this->hasMany(Wishlist::class,);
+   }
+   public function ratings()
+   {
+      return $this->hasMany(rating::class);
    }
 }

@@ -39,7 +39,6 @@ class SearchProductController extends Controller
             'Data' => $products
         ]);
     }
-
     public function filterproductbycategory($id)
     {
         $category = category::with(['product' => function ($query) {

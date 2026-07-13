@@ -6,32 +6,26 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+
     public function up(): void
     {
-        Schema::create('wishlists', function (Blueprint $table) {
+        Schema::create('rating', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
 
             $table->foreign('user_id')
                 ->references('id')
-                ->on('user')
-                ->onDelete('cascade');
+                ->on('user');
 
-            $table->foreign('product_id')
-                ->references('id')
-                ->on('products')
-                ->onDelete('cascade');
-
-            $table->unique(['user_id', 'product_id']);
+            $table->integer('start');
+            $table->text('comment')->nullable();
 
             $table->timestamps();
         });
     }
-
     public function down(): void
     {
-        Schema::dropIfExists('wishlists');
+        Schema::dropIfExists('rating');
     }
 };

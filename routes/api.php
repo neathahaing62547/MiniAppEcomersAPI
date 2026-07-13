@@ -14,6 +14,7 @@ use App\Http\Controllers\wishlistsController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ratingController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -99,4 +100,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::delete('removefromfavorith/{id}' , [wishlistsController::class, 'removefromfavorith'])->name('removefromfavorith');
     
+    Route::post('/rating' , [ratingController::class, 'store']);
 }); 
