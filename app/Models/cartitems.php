@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class cartitems extends Model
-{
-       
+{       
   protected $table = 'cart_items';
 
        protected $primaryKey = 'id'; 
@@ -15,7 +14,6 @@ class cartitems extends Model
             'product_id',
             'quantity'
           ];
-
       public function cart() {
          return $this->belongsTo(cart::class);
       }

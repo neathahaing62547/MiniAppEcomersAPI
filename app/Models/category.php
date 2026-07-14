@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class category extends Model
 {
-
      protected $table = 'categories';
      protected $primaryKey = 'id';
 
@@ -15,7 +14,6 @@ class category extends Model
         'description',
         'status',
        ];
-
         public function product() {
             return $this->hasMany(product::class);
         }

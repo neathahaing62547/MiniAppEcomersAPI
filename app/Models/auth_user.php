@@ -12,14 +12,12 @@ class auth_user extends Authenticateble
 
    protected $table = 'user';
    protected $primaryKey = 'id';
-
    protected  $fillable = [
       'name',
       'email',
       'password',
       'role',
    ];
-
    public function cart()
    {
       return $this->hasOne(cart::class);

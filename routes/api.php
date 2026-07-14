@@ -47,6 +47,8 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::get('/admin/showall/report', [ReportController::class, 'show'])->name('showallreport');
 
     Route::get('/admin/fillter/report', [ReportController::class, 'adminfillterreport'])->name('adminfillterreport');
+
+    Route::get('/showallrating' , [ratingController::class , 'index']);
 });
 
 Route::middleware(['auth:sanctum', 'role:admin,staff'])->group(function () {
@@ -101,4 +103,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('removefromfavorith/{id}' , [wishlistsController::class, 'removefromfavorith'])->name('removefromfavorith');
     
     Route::post('/rating' , [ratingController::class, 'store']);
+    
+    Route::get('toprating' , [ratingController::class, 'topRatings']);
 }); 

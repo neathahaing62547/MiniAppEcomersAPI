@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class product extends Model
 {
     protected $table = 'products';
-
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -19,7 +18,6 @@ class product extends Model
         'image',
         'status'
     ];
-
     public function category()
     {
         return $this->belongsTo(category::class);

@@ -15,12 +15,10 @@ class order extends Model
         'payment_method',
         'status',
     ];
-
     public function user()
     {
         return $this->belongsTo(auth_user::class);
     }
-
     public function orderItems()
     {
         return $this->hasMany(orderitem::class);
