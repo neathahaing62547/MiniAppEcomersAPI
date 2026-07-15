@@ -48,7 +48,9 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
     Route::get('/admin/fillter/report', [ReportController::class, 'adminfillterreport'])->name('adminfillterreport');
 
-    Route::get('/showallrating' , [ratingController::class , 'index']);
+    Route::get('admin/showallrating' , [ratingController::class , 'index']);
+    
+    Route::delete('admin/deleterating/{id}' , [ratingController::class, 'delete']);
 });
 
 Route::middleware(['auth:sanctum', 'role:admin,staff'])->group(function () {

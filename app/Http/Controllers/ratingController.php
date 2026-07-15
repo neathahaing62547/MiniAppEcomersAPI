@@ -12,7 +12,6 @@ class ratingController extends Controller
 {
     public function index()
     {
-
         $rating = rating::with('user')->latest('id')->get();
 
         if ($rating->isEmpty()) {
@@ -63,5 +62,37 @@ class ratingController extends Controller
                 'Message' => 'Eror'  . $e->getMessage()
             ]);
         }
+    }
+    public function delete($id)
+    {
+        try {
+            $rating = rating::find($id);
+
+            if (!$rating) {
+                return response()->json([
+                    'Message' => 'Rating you want to delete is Not Found ',
+                    'data' => $id
+                ]);
+            } else {
+                $rating->delete();
+                return response()->json([
+                    'Message' => 'rating delete Successfully ',
+                    'Data' => $rating
+                ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json([
+                'Message' => 'eror' . $e->getMessage()
+            ]);
+        }
+    }
+    public function deleteAll()
+    {
+        rating::query()->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'All Rating deleted successfully.'
+        ]);
     }
 }
