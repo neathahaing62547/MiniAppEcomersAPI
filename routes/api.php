@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ratingController;
+use App\Http\Controllers\NoftificationControllerController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,9 +49,14 @@ Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
 
     Route::get('/admin/fillter/report', [ReportController::class, 'adminfillterreport'])->name('adminfillterreport');
 
-    Route::get('admin/showallrating' , [ratingController::class , 'index']);
-    
-    Route::delete('admin/deleterating/{id}' , [ratingController::class, 'delete']);
+    Route::get('admin/showallrating', [ratingController::class, 'index']);
+
+    Route::delete('admin/deleterating/{id}', [ratingController::class, 'delete']);
+
+    Route::post('/admin/storenoftification' , [NoftificationControllerController::class, 'store']);
+
+    Route::post('/admin/sentnoftification/{id}' , [NoftificationControllerController::class, 'sent']);
+
 });
 
 Route::middleware(['auth:sanctum', 'role:admin,staff'])->group(function () {
@@ -69,7 +75,6 @@ Route::middleware(['auth:sanctum', 'role:admin,staff'])->group(function () {
 
     Route::get('/showall/report/staff', [ReportController::class, 'showreportstaff'])->name('showreportstaff');
 });
-
 
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -98,13 +103,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/paymentdetail', [PaymentController::class, 'getdetailpayment'])->name('payment');
 
-    Route::post('/addtofavorith/{id}' , [wishlistsController::class, 'store'])->name('addtofavorith');
-     
-    Route::get('/favorith' , [wishlistsController::class, 'index'])->name('Favorith');
+    Route::post('/addtofavorith/{id}', [wishlistsController::class, 'store'])->name('addtofavorith');
 
-    Route::delete('removefromfavorith/{id}' , [wishlistsController::class, 'removefromfavorith'])->name('removefromfavorith');
-    
-    Route::post('/rating' , [ratingController::class, 'store']);
-    
-    Route::get('toprating' , [ratingController::class, 'topRatings']);
-}); 
+    Route::get('/favorith', [wishlistsController::class, 'index'])->name('Favorith');
+
+    Route::delete('removefromfavorith/{id}', [wishlistsController::class, 'removefromfavorith'])->name('removefromfavorith');
+
+    Route::post('/rating', [ratingController::class, 'store']);
+
+    Route::get('toprating', [ratingController::class, 'topRatings']);
+});
