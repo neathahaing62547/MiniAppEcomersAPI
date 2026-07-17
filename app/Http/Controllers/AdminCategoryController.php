@@ -18,7 +18,6 @@ class AdminCategoryController extends Controller
         'Message'  => 'Category Not Found '
       ]);
     }
-
     return response()->json([
       'Message' =>  'Show all Categoey',
       'Data' => $category,
@@ -26,7 +25,6 @@ class AdminCategoryController extends Controller
   }
   public function store(Request $request)
   {
-
     $request->validate([
       'name' => 'required|string|min:5|max:30',
       'description' => 'required|string|min:10|max:100',
@@ -40,10 +38,8 @@ class AdminCategoryController extends Controller
       'Data' => $category,
     ]);
   }
-
   public function update(Request $request, $id)
   {
-
     $category = category::find($id);
 
     if (!$category) {
@@ -51,7 +47,6 @@ class AdminCategoryController extends Controller
         'Message' => 'Category You wannt to Update is Not Found '
       ]);
     }
-
     $request->validate([
       'name' => 'required|string|min:5|max:30',
       'description' => 'required|string|min:10|max:100',

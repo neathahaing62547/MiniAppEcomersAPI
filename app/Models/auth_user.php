@@ -9,7 +9,6 @@ use Laravel\Sanctum\HasApiTokens;
 class auth_user extends Authenticateble
 {
    use HasApiTokens, Notifiable;
-
    protected $table = 'user';
    protected $primaryKey = 'id';
    protected  $fillable = [

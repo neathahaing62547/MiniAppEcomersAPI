@@ -11,7 +11,6 @@ class AdminSearchController extends Controller
     {
 
         $search = $request->query('search');
-
         $query = category::with('product');
 
         if ($search) {
@@ -21,9 +20,7 @@ class AdminSearchController extends Controller
                 ->orderBY('id',  'DESC')
                 ->paginate(10);
         }
-
         $category = $query->get();
-
         if ($category->isEmpty()) {
 
             return response()->json([
@@ -32,7 +29,7 @@ class AdminSearchController extends Controller
         }
         return response()->json([
             'message' => 'data category from search',
-            'Data' => $category 
+            'Data' => $category
         ]);
     }
 }

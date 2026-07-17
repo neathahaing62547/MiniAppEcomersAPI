@@ -24,8 +24,6 @@ class AuthControlller extends Controller
             'email' => $validator['email'],
             'password' => Hash::make($validator['password']),
         ]);
-        // $token = $data->createToken('test_token')->plainTextToken; 
-
         return response()->json([
 
             'message' => 'Rigister Done Broo !!',

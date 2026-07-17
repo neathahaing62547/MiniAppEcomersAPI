@@ -28,11 +28,18 @@ class NoftificationControllerController extends Controller
             'data' => $notification
         ]);
     }
-    public function sent($id) {   
-        $notification = announcements::find($id);
-        $user = auth_user::all();
-         
+    public function sent($id) {
 
+        $notification = announcements::find($id);
+
+          if(!$notification){
+             return response()->json([
+                'Message' => 'Your Message you want to sent to user is not found'
+             ]);
+          }
+        $user = auth_user::where('role' , 'user')
+        ->all();
+         
         foreach( $user as $user ){
            Notification::route('mail' , $user->email)->notify(
             new InformationforUser(
@@ -45,5 +52,18 @@ class NoftificationControllerController extends Controller
             'Message' => 'Sent Successfully',
            ]);            
     }
+    public function  delete($id) {
+           $notification = announcements::find($id);
 
+          if(!$notification){
+             return response()->json([
+                'Message' => 'Your Message you want to delete  is not found'
+             ]);
+          }
+          $notification->delete();
+          return response()->json([
+            'Message' => 'Message Delete Successfully',
+            'Data' => $notification
+          ]);
+    }
 }

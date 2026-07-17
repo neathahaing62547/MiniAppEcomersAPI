@@ -13,5 +13,4 @@ class announcements extends Model
         'message',
         'status',
      ];
-    
 }

@@ -45,7 +45,6 @@ class AdminProductController extends Controller
                 $file->storeAs('uploads/products', $filename, 'public');
                 $productData['image'] = 'storage/uploads/products/' . $filename;
             }
-
             $product = product::create($productData);
 
             return response()->json([
@@ -108,7 +107,6 @@ class AdminProductController extends Controller
     public function delete($id){
 
        $product = product::find($id);
-
     if ($product->image) {
             $imagePath = str_replace('storage/', '', $product->image);
             

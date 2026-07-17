@@ -44,9 +44,7 @@ class PaymentController extends Controller
     public function getdetailpayment(Request $request) {
             
       $UserID = $request->user()->id;
-
                 $payment = \App\Models\auth_user::with('order.payment')->find($UserID);
-
                  if(!$payment){
                      return response()->json([
                         'Message' => 'you dont have order'

@@ -12,12 +12,10 @@ class ProductController extends Controller
 {
      public function index()
      {
-
           $product = product::where('status', 'active')
                ->with('category')
                ->orderBy('id', 'DESC')
                ->paginate(10);
-
           if ($product->isEmpty()) {
                return response()->json([
                     'Message' => 'Data NOT Found '
